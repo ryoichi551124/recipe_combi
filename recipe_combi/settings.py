@@ -122,6 +122,9 @@ USE_TZ = True
 if os.getenv('GAE_APPLICATION', None):
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
     STATIC_URL = '/static/'
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),  # プロジェクト直下のstaticディレクトリを指定
+    )
 
 else:
     STATIC_URL = '/static/'
