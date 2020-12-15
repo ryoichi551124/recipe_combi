@@ -128,3 +128,4 @@ if os.getenv('GAE_APPLICATION', None):
 
 else:
     STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
