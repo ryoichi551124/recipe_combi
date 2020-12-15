@@ -27,6 +27,7 @@ recipe = {
     'sub_name': sub['recipeTitle'][sub_num],
     'soup_name': soup['recipeTitle'][soup_num],
 }
+judge = False
 
 
 def index(request):
@@ -34,10 +35,11 @@ def index(request):
     return render(request, 'combi_make/index.html', params)
 
 def ok(request):
-    global main_num, sub_num, soup_num
+    global main_num, sub_num, soup_num, judge
 
-    method.choice(main_num, sub_num, soup_num)
-    method.judge()
+    judge = True
+    method.choice(main_num, sub_num, soup_num, judge)
+#    method.judge()
     params, main, sub, soup = method.random_choice()
     main_num = main
     sub_num = sub
@@ -45,9 +47,10 @@ def ok(request):
     return render(request, 'combi_make/index.html', params)
 
 def no(request):
-    global main_num, sub_num, soup_num
+    global main_num, sub_num, soup_num, judge
 
-    method.choice(main_num, sub_num, soup_num)
+    judge = False
+    method.choice(main_num, sub_num, soup_num, judge)
     params, main, sub, soup = method.random_choice()
     main_num = main
     sub_num = sub

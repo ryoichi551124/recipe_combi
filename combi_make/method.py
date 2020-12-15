@@ -13,7 +13,7 @@ combi =pd.read_csv('combi.csv', index_col=0)
 combis = combi.copy(deep=True)
 
 
-def choice(main_num, sub_num, soup_num):
+def choice(main_num, sub_num, soup_num, judge):
     global combi, combis
 
     main_num = main_num
@@ -32,6 +32,13 @@ def choice(main_num, sub_num, soup_num):
             combi[material] += 1
         if material in soup['recipeMaterial'][soup_num]:
             combi[material] += 1
+
+    print('main', main['recipeMaterial'][main_num])
+    print('sub', sub['recipeMaterial'][sub_num])
+    print('soup', soup['recipeMaterial'][soup_num])
+
+    if judge:
+        combi['採用/不採用'] = 1
 
     combis = pd.concat([combis, combi])
     #基本の空のデータをID以外初期化
