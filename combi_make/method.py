@@ -16,10 +16,6 @@ combis = combi.copy(deep=True)
 def choice(main_num, sub_num, soup_num, judge):
     global combi, combis
 
-    main_num = main_num
-    sub_num = sub_num
-    soup_num = soup_num
-
     combi['主菜'] = main['recipeTitle'][main_num]
     combi['副菜'] = sub['recipeTitle'][sub_num]
     combi['汁物'] = soup['recipeTitle'][soup_num]
@@ -33,10 +29,6 @@ def choice(main_num, sub_num, soup_num, judge):
         if material in soup['recipeMaterial'][soup_num]:
             combi[material] += 1
 
-    print('main', main['recipeMaterial'][main_num])
-    print('sub', sub['recipeMaterial'][sub_num])
-    print('soup', soup['recipeMaterial'][soup_num])
-
     if judge:
         combi['採用/不採用'] = 1
 
@@ -45,6 +37,7 @@ def choice(main_num, sub_num, soup_num, judge):
     combi['ID'] += 1
     combi.iloc[0, 1:] = 0
     combis.to_csv('train.csv', index=False)
+
 
 def random_choice():
     main_num = random.randint(0, len(main))
@@ -60,9 +53,6 @@ def random_choice():
     'soup_name': soup['recipeTitle'][soup_num],
     }
     return recipe, main_num, sub_num, soup_num
-
-def judge():
-    combi['採用/不採用'] = 1
 
 
 

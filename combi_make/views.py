@@ -39,7 +39,6 @@ def ok(request):
 
     judge = True
     method.choice(main_num, sub_num, soup_num, judge)
-#    method.judge()
     params, main, sub, soup = method.random_choice()
     main_num = main
     sub_num = sub
